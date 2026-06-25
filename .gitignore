@@ -19,3 +19,4 @@ build/AppIcon.iconset/
 *.xcuserstate
 
 build/
+myagents_files/
