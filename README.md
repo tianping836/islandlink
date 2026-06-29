@@ -1,45 +1,13 @@
-# 连接 App 开发 — 完整方案
+# YouMind IslandLink Import
 
-> 军哥的个人项目 | 2026-06-15 启动 | 2026-06-16 独立工作区
->
-> 目标：打造一款律师专属的"案件-人脉交叉管理"Apple 全平台应用（iOS/iPadOS/macOS）
+This folder contains source text extracted from the YouMind board:
 
----
+- `IslandLink-v4/`: reconstructed source files.
+- `youmind-document-raw.txt`: sanitized raw text captured from the combined source document.
+- `youmind-file-page-full.txt`: sanitized text captured from the file list page.
+- `*-snapshot.txt`: sanitized DOM snapshots used to recover code blocks.
+- `extract-youmind.mjs` and `extract-batch-snapshot.mjs`: local extraction helpers.
 
-## 项目代号
+Any GitHub personal access token visible in the YouMind page was redacted before saving local artifacts.
 
-- **代号**：连接（CaseNetwork）
-- **含义**：连接人与案件，信息交叉检索
-
----
-
-## 📁 文档索引
-
-| 文件 | 内容 |
-|------|------|
-| `analysis.md` | 完整分析：竞品、需求、数据模型、UI、技术、成本、商业化 |
-| `DataModel.swift` | SwiftData 数据模型原型代码 |
-| `ui-screens.md` | 页面级 UI 设计与交互描述 |
-| `roadmap.md` | 分阶段开发路线图（7 个 Phase） |
-
----
-
-## 一句话概括
-
-> 让律师从一个案件看到全部参与人，从一个人看到经手的全部案件，信息交叉检索，类似飞书多维表格的关联列功能。
-
----
-
-## 当前状态
-
-- **Phase 0**：飞书多维表格原型验证进行中
-- 军哥已创建名为"测试"的空白多维表格，正在搭建表结构
-
----
-
-## 在另一台电脑上使用
-
-```bash
-git pull
-# 所有文档在 连接App开发/ 目录下
-```
+Development direction is governed by `IslandLink-product-review.md`: first-principles reasoning and adversarial review are the highest-level rules. The current recommendation is to keep the working name `屿连` with the positioning line `看见人脉中的真实路径`.

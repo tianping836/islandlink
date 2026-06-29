@@ -1,22 +1,5 @@
-# macOS
+build-cache/
 .DS_Store
-
-# Workspace temp
-workspace/
-
-# Credentials
-.config/
-.claude/plans/myagents/
-.build/
-.claude/
-
-# Build artifacts
-build/DerivedData/
-build/*.app/
-build/AppIcon.iconset/
-*.profraw
-*.xcuserdata
-*.xcuserstate
-
-build/
-myagents_files/
+*.xcuserdata/
+DerivedData/
+.swiftpm/

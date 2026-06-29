@@ -1,0 +1,296 @@
+# YouMind Board Sync Index
+
+Source board: `屿连app开发`.
+
+This index is generated from the locally recovered YouMind board text and snapshots. It is intended to make Codex the working development home for the app.
+
+## Recovered Board Items
+
+- 屿连app开发
+- IslandLink v4 — 全部源码（24 文件合并，可下载）
+- IslandLink v4 — 全部源码（18+ 文件合并）
+- IslandLink v4 · Batch 4/4 · GitHub API 上传脚本
+- IslandLink v4 · Batch 3/4 · GitHub API 上传脚本
+- IslandLink v4 · Batch 2/4 · GitHub API 上传脚本
+- IslandLink v4 · Batch 1/4 · GitHub API 上传脚本
+- IslandLink v4 — GitHub API 上传脚本
+- IslandLink v4 源码推送脚本
+- 屿连 IslandLink — 完整源码包 v4（供 ChatGPT 使用）
+- 屿连 IslandLink — 源码更新包 v4
+- 屿连 IslandLink — 项目上下文（供 AI 编程助手使用）
+- 屿连/DataModel.swift
+- 屿连/Supporting/Infrastructure.swift
+- 屿连/Supporting/EventSupport.swift
+- 屿连/Supporting/SubscriptionStubs.swift
+- 从 YouMind 下载 14 个 Swift 源文件 · 操作指南
+- .gitignore — 屿连 IslandLink
+- 屿连/IslandLinkApp.swift
+- 屿连/project.yml
+- 屿连 IslandLink — iOS / macOS 真机安装测试指南
+- 飞书多维表格 → 岛连 IslandLink：契合功能与借鉴方案
+- 飞书多维表格字段系统研究 — 对岛连 IslandLink 的启示
+- 屿连/TodayWidget.swift
+- 屿连/AppIntents.swift
+- 屿连/HandoffManager.swift
+- 屿连/CloudSyncObserver.swift
+- ===FILE: project.yml===name: IslandLinkoptions:bundleIdPrefix: com.youminddeploymentTarget:iOS: "17.0"xcodeVersion: "16.0"generateEmptyDirectories: truedevelopmentLanguage: zh-HansusesTabs: falseindentWidth: 4tabWidth: 4postGenCommand: settings:base:SWIFTVERSION: "6.0"DEVELOPMENTTEAM: "A6M9K8K4QW"CODESIGNSTYLE: AutomaticGENERATEINFOPLISTFILE: true
+- myagents 可据此分隔文件并推送到 GitHub 仓库 tianping836/connect，目标路径前缀为 屿连/。
+- ===FILE: 屿连/DataModel.swift===
+- 完整源码位于 YouMind: id=019edba5-283e-7876-8f54-fe3ea2046244]
+- ===FILE: 屿连/Supporting/SubscriptionStubs.swift===
+- import SwiftUI
+- import SwiftData
+- """Batch 4 — 上传 Supporting/ 基础设施 (3个文件)
+- """Batch 3 — 上传详情/编辑/设置 + 配置 + Widget (6个文件)
+- EventDetailView / EventEditView / SettingsView / SpotlightIndexManager / IslandLinkWidget / project.yml"""
+- """Batch 2 — 上传 UI 视图层 + 设计系统 (6个文件)
+- """Batch 1 — 上传 DataModel + Supporting 文件 + HandoffManager + IslandLinkApp (6个文件)"""
+- IslandLink v4 — GitHub API 一键上传
+- IslandLink v4 — 一键推送脚本
+- GitHub: https://github.com/tianping836/connect 平台： iOS 17.0+ / iPadOS / macOS / watchOS 架构： SwiftUI + SwiftData + Swift Concurrency3 Tab: 人脉 / 事项（案件+事件）/ 设置
+- # 文件路径 说明 1 IslandLink/DataModel.swift 全部 @Model + 枚举 + 拼音扩展 + 查询服务
+- 2 IslandLink/IslandLinkApp.swift App 入口 + ModelContainer + Deep Link / Handoff
+- 3 IslandLink/ContentView.swift 根导航（3 Tab）+ iPad 侧栏
+- 4 IslandLink/DesignSystem.swift
+- # 文件 操作 说明 1 IslandLink/DataModel.swift 完整替换 极简 Case + 灵活字段 + 无旧枚举
+- 2 IslandLink/PersonListView.swift 完整替换 全量 fetch + Swift filter，无 #Predicate
+- 3 IslandLink/ContentView.swift 完整替换 3 Tab 布局
+- 4 IslandLink/EventEditView.swift 完整替换 移除提醒/日历同步 UI 5 IslandLink/IslandLinkWidget.swift 完整替换 totalCaseCount + 灵活字段适配
+- 更新时间：2026-06-23源代码仓库：YouMind 项目板：屿连 app 开发
+- 屿连（IslandLink） —— 律师专属的人脉优先管理 Apple 全平台应用。
+- 架构：SwiftUI + SwiftData + Swift Concurrency
+- 3 个主 Tab：人脉 / 事项 / 设置（日历板块已移除）
+- 二、数据模型现状（DataModel.swift）
+- /// 订阅管理器存根 — 满足 IslandLink/ 15 文件编译所需
+- /// 完整版（含 StoreKit）在 CaseNetwork/SubscriptionManager.swift
+- mkdir -p IslandLink/App
+- mkdir -p IslandLink/Models
+- mkdir -p IslandLink/Design
+- mkdir -p IslandLink/Views
+- mkdir -p IslandLink/Managers
+- mkdir -p IslandLink/Intents
+- ├── 📄 project.yml ← 新增：XcodeGen 工程规格
+- ├── 📁 IslandLink/ ← 新增：主 App 源码目录
+- Xcode / Swift / SwiftUI 项目标准忽略规则
+- 屿连 IslandLink — 一键 Xcode 工程配置脚本
+- /// 屿连 IslandLink — 律师人脉优先管理
+- /// - SwiftUI 声明式 UI
+- name: IslandLink
+- settings:base:SWIFTVERSION: "5.10"TARGETEDDEVICEFAMILY: "1,2"ENABLEUSERSCRIPTSANDBOXING: "NO"
+- 连接线 USB-C to Lightning 或 USB-C to USB-C 数据线（需支持数据传输，非仅充电线）
+- 审计范围：屿连 IslandLink 全部 14 个核心 Swift 源文件
+- DataModel.swift
+- 飞书多维表格有 28 种字段类型、5 种视图类型、完整的关联引用系统。但岛连不是飞书——它是一个以人脉为中心的 Apple 原生应用，案件的定位是"极简记录"而非"全功能项目管理"。借鉴飞书不是为了复制它，而是从它的产品设计中提取那些符合岛连核心定位、能显著提升用户体验、实现成本可控的设计模式。
+- 以下按契合度从高到低排列，每个功能点包含：与岛连的契合度评估、飞书的做法、岛连当前状态、借鉴方案、实现复杂度。
+- 这套设计的哲学本质是：每个字段类型对应一个真实的业务语义，而非一个数据类型。 进度条不是"一个 0-100 的数字"，而是"一个需要视觉化展示的进度概念"；货币字段不是"一个带两位小数的数字"，而是"一笔需要显示币种符号的金额"。这给岛连的启示是——自定义字段系统不应该只提供"文本"和"日期"两个基础选择，而应该思考律师实际工作中的业务语义：委托人是一个"关联到人脉库"的字段，案号是一个"不可重复的唯一标识"，诉讼阶段是一个"可流转的状态"。
+- static let viewPerson = "com.youmind.islandlink.viewPerson"
+- static let viewCase = "com.youmind.islandlink.viewCase"
+- static let viewEvent = "com.youmind.islandlink.viewEvent"
+- static let viewMatters = "com.youmind.islandlink.viewMatters"
+- 屿连/SettingsView.swift
+- 屿连/github_push.py
+- 屿连/ContactsImportView.swift
+- /// 三入口：人脉列表空状态 / 人脉列表顶部横幅 / 设置页
+- 屿连/ContactsImportManager.swift
+- 屿连/CalendarReaderManager.swift
+- 屿连/github_push (旧版).py
+- github_push.py — 屿连 IslandLink v3 → GitHub（一键自动版）
+- """屿连 IslandLink v3 全量源码 → GitHub。
+- IslandLink v3 → GitHub 推送脚本
+- github_push.py — 屿连 IslandLink v3 全量源码 → GitHub
+- 屿连/ContactsImportView (旧版).swift
+- 屿连/ContactsImportManager (旧版).swift
+- 屿连/CalendarReaderManager (旧版).swift
+- 屿连/sync.sh
+- TARGETDIR="$HOME/.myagents/projects/islandlink"
+- BACKUPDIR="$HOME/.myagents/projects/islandlink.backup.$(date +%Y%m%d%H%M%S)"
+- echo " 屿连 IslandLink — 全量源码同步"
+- 屿连 IslandLink
+- 屿连 IslandLink — 日历/通讯录集成 · 缺失分析与设计方案
+- 2026-06-21 基于 YouMind v3 源码 ↔ GitHub 仓库对比
+- https://github.com/tianping836/islandlink 当前仅包含 Phase 0/1 原型阶段的文件：
+- 文件 内容 analysis.md 竞品、需求、数据模型分析
+- DataModel.swift 早期 SwiftData 原型（无事件系统、无连接、无体验纵深）
+- YouMind v3 源码中至少 24 个核心源文件完全没有同步到 GitHub，包括全部事件系统、连接功能、可调节人格、Focus Filter、渐进式引导、设计系统、日历同步管理器等。
+- 屿连 IslandLink v3 iOS原型
+- 屿连 IslandLink — 当前 App vs YouMind v3 设计差异分析
+- 基于 2026-06-21 iOS 端截图对比 v3 设计文档与源码
+- 页面 截图内容 状态 搜索 搜索框 + 4 个快捷操作入口（全部人脉/全部案件/查找关系路径/去重检查），全部为 0 空状态
+- 人脉 空状态：「还没有人脉」+ 添加按钮 空状态
+- 底部导航 搜索 / 人脉 / 案件 / 日历 / 设置（5 Tab） ✅
+- 屿连 IslandLink Mac原型
+- 屿连 IslandLink App 原型
+- 屿连/upload.py
+- """屿连 IslandLink — 全量源码上传到 GitHub 仓库
+- GitHub 仓库 https://github.com/tianping836/islandlink 已创建（空仓库）
+- 前提：全部 Swift 源文件已编写完成，以下 4 项需在本地 Xcode 手动完成。
+- 文件 建议 Group 说明 CaseTimelineView.swift Views 案件时间线
+- AppToneManager.swift Managers 可调节人格 UX 写作
+- FocusFilterManager.swift Managers iOS 16+ Focus Filter
+- OnboardingManager.swift Managers 渐进式引导系统
+- 三个设计信念
+- 让专业人脉网络本身产生价值
+- 屿连 IslandLink · Pitch Deck
+- 屿连不是通讯录
+- 封面：屿连 IslandLink
+- 屿连 IslandLink: 人脉网络图
+- 屿连 IslandLink · 产品叙事文案
+- 看见你人脉网络中的真实路径。
+- 他们不是通讯录里的名字，而是无数个案号和庭次织成的真实连接。谁和王法官在七个案子里碰过？谁和李检察官已经一年没联系了？你和张律师之间，隔了几个中间人？
+- 屿连不做美化，不做滤镜。它让你看见的，是你专业人脉的真实面貌。
+- 真实。像 BeReal 一样，屿连展示的不是经过修饰的社交图谱。这里的每一条连线，背后都是一个真实存在的案号、一次真实的庭审、一段真实的协作。没有算法制造的关系，只有事件里长出来的网络。
+- 导航。把屿连想成人脉世界的 AllTrails——它不是通讯录，是你专业网络的地图和指南针。告诉你谁离你最近、谁正在变远、通过谁可以触达那个你还没认识的人。
+- 降低负担。律师不需要另一个装满信息的工具。屿连像 Tiimo 一样，把复杂的关系网络拆成你一次就能看懂的图景。逐层展开，先看核心圈，再看外围——认知不超载，判断才清晰。
+- Apple 年度最佳应用对屿连的启发（2021-2025）
+- 对屿连的启发：网络图能否有「逐层展开」模式，让用户一次只看一层关系？
+- 对屿连的启发：屿连不是美化过的社交图谱，而是专业人脉的真实网络——谁和谁真的在案子里碰过
+- 屿连 IslandLink · 第四梯队：连接落地计划
+- 核心原则：一切以连接为中心。 人 > 案件。网络 > 节点。
+- 动词是连接，不是管理
+- 位置 当前 改为 人脉空状态 「暂无联系人」 「还没有联系人。加第一位？」
+- 屿连 IslandLink · 第三轮深度改进分析
+- 本轮超越之前两轮的分析范围（Things 3 / Fantastical / Bear / Structured / Craft），引入此前未覆盖的十年标杆 App，聚焦「用户体验纵深」而非功能清单。
+- SwiftUI 纯原生。不做跨平台，不用 Flutter / React Native。
+- 为什么是 SwiftUI
+- SwiftUI 是所有 LLM 生成 Swift 代码的最佳目标。 学术评测和开发者实战一致确认：SwiftUI（声明式）的 AI 生成质量远高于 UIKit（命令式）。声明式框架与 AI 的"描述-生成"模式天然吻合——你描述界面长什么样，它直接渲染。UIKit 需要手动管理生命周期、约束和代理，AI 生成的代码编译通过率低，往往需要反复修 3-5 轮。
+- 屿连/PersonNetworkView.swift
+- /// 人脉网络图 — 连接第五梯队核心视图
+- /// 人与人之间若有共同的案件，以纤细半透明连线相连，连线粗细反映连接强度。
+- 屿连/PersonConnectionView.swift
+- /// 「你们之间」视图 — 连接第四梯队核心页面
+- /// 展示两个人的连接全景：共享案件、共同事件、互动时间线、共同认识的人
+- /// 设计理念：以连接为中心，不展示案件管理功能。
+- /// - 「他们也连接着…」横向滚动面板：展示 B 的 Top 5 其他人脉（#4）
+- Swift 文件写入完成 ✅
+- 将自动备份现有目录，然后写出全部 19 个 Swift 文件到 /.myagents/projects/islandlink/
+- TARGETDIR="$HOME/.myagents/projects/islandlink"BACKUPDIR="$HOME/.myagents/projects/islandlink.backup.$(date +%Y%m%d%H%M%S)"
+- echo "=="====echo “ 屿连 IslandLink — 全量源码同步”====echo “ 目标目录： $TARGETDIR”====echo “ 备份目录： $BACKUPDIR”====echo "=="
+- 屿连/ComplicationController.swift
+- /// 屿连 · 下个开庭倒计时 Complication
+- /// 数据来源：WatchDataManager 共享 SwiftData，合并 Event(.hearing) 与 CaseEvent(.trial)
+- 屿连/WatchContentView.swift
+- /// 从共享 SwiftData 容器拉取当日事件，按时间排列
+- 屿连/IslandLinkWatchApp.swift
+- /// 屿连 IslandLink · Apple Watch 轻量版
+- /// watchOS 10+ 入口，通过 App Group 共享 SwiftData 持久化存储
+- struct IslandLinkWatchApp: App {
+- 屿连/WatchDataManager.swift
+- /// watchOS 端 SwiftData 桥接管理器
+- private let logger = Logger(subsystem: "com.islandlink.watch", category: "DataManager")
+- 以下 4 项功能已全部完成代码编写，共创建 4 个新源文件，修改 1 个现有文件（ContentView.swift）。全部代码遵循现有设计系统规范（.tealLink、.oceanDeep、.coralWarm 等语义色，Spacing / CornerRadius 常量，cnHeadline / cnSubhead 等字体层级）。
+- 文件：IslandLinkWidget.swift（598 行）
+- widgetModelContainer() — 通过 group.com.youmind.islandlink App Group 共享目录访问 SwiftData 存储
+- 屿连/SpotlightIndexManager.swift
+- 屿连/IslandLinkIntents.swift
+- /// - "Hey Siri, 在屿连里记一笔"
+- 屿连/IslandLinkWidget.swift
+- private let appGroupIdentifier = "group.com.youmind.islandlink"
+- 屿连/NotificationManager.swift
+- /// 屿连 IslandLink 通知管道
+- 屿连 IslandLink · 第二轮深度改进分析
+- 对照基准：第一轮美化方案 + 事件板块架构 + 当前代码实现状态
+- 维度 Things 3 Fantastical Structured Bear 连接（当前） 连接（差距） 触觉反馈 ✅ ✅ ✅ — ❌ 完全缺失
+- 屿连/CodeGeneratorSheet.swift
+- /// 入口：在设置页长按「连接 v1.0 · 构建于 SwiftUI」3 秒
+- 屿连/RedeemCodeManager.swift
+- 屿连/RedeemSheet.swift
+- 屿连/SubscriptionManager.swift
+- /// 连接 CaseNetwork 订阅管理
+- /// 免费版上限：人脉 50 + 案件/事件合计 50
+- 屿连/UpgradeSheet.swift
+- 空状态-人脉
+- 屿连/PersonListView.swift
+- /// 人脉列表页 — 搜索框 + 角色胶囊筛选 + 排序切换 + 简化联系人卡片
+- /// 合并原搜索 Tab，搜索功能内嵌到人脉页顶部
+- 屿连/SettingsView (旧版).swift
+- 屿连/ContentView.swift
+- /// 人脉 事项 设置
+- 屿连/EventEditView.swift
+- 屿连/EventDetailView.swift
+- 屿连/EventListView.swift
+- 屿连/DesignSystem.swift
+- static let islandLinkFocusSearch = Notification.Name("islandLinkFocusSearch")
+- 屿连/DataModel (过程编辑版).swift
+- 为「连接 CaseNetwork」App 开发提供参考。
+- Fantastical + Cardhop Mac App of the Year 2020 日历 + 人脉一体化 自然语言输入、日历与联系人融合
+- Structured 2026 ADA 入围 SwiftUI 日规划工具 SwiftUI 做专业工具
+- 连接 App — Apple 风格美化方案
+- 给 Cursor + Claude Sonnet 4.5 的逐项修改指令。全局约束：iOS 17+，SwiftUI，不改动现有数据模型。
+- 一、全局：DesignSystem.swift 精调
+- 屿连/DesignSystem (旧版).swift
+- /// 连接 CaseNetwork 设计系统 v2 — 语义色
+- /// 青绿连接色 · 链接、关联指示、选中态
+- 连接 App 图标 - 温暖水彩版
+- 连接 App 图标 - 极简线条版
+- 连接 App 图标 - 海豚头尾相连
+- 按「屿连 IslandLink 设计系统 v2」重新设计的全部页面。每个页面标注了使用的组件、色彩、动效。原版见 ui-screens.md（v1 迭代参考）。
+- 📅 日历 👥 人脉 🗂 事项 ⚙️ 设置
+- 事件列表/创建 人脉详情页 案件列表/详情 设置表单
+- 屿连 IslandLink — 设计系统 v2
+- 基于「连接」的品牌理念重建：海豚双游，人案相连。专业而温暖，精准而流动。
+- 连接可见。 每到一个页面，用户应该一眼看到当前实体（人/案）的全部关联。关联不是藏在菜单里的功能，而是页面结构的一级公民。海豚头尾相接的意象落实为具体设计语言：每个实体的关联区域用环绕式布局，视觉上形成"相连"的闭环。
+- 专业但不冷。 法律工具天然需要权威感和信任感，但"连接"的核心是人——法官、当事人、同行律师。色彩体系在传统法律蓝的基础上注入暖调，让每个角色类型有体温，让案件列表有呼吸感。不是冷冰冰的数据库，而是一个律师愿意每天打开的工作伴侣。
+- 精准流动。 交互的节奏像海豚游泳——平滑、连续、不打断。导航转场用共享元素过渡，搜索补全用渐入而非弹跳，列表加载用淡入序列。每一个像素的运动都服务于"连接"这个核心隐喻：从一个实体到另一个实体的跳转，是游泳，不是跳跃。
+- =FILE: project.yml=
+- SWIFT_VERSION: "6.0"
+- INFOPLIST_KEY_CFBundleDisplayName: 屿连
+- INFOPLIST_KEY_NSContactsUsageDescription: “屿连使用通讯录来帮你快速导入联系人。”
+- INFOPLIST_KEY_NSCalendarsUsageDescription: “屿连使用日历来显示事件提醒。”
+- INFOPLIST_KEY_NSFaceIDUsageDescription: “屿连使用面容 ID 来保护你的律师数据。”
+- IslandLink:
+- - path: 屿连
+- PRODUCT_BUNDLE_IDENTIFIER: com.youmind.islandlink
+- IslandLinkWidget:
+- - path: IslandLinkWidget
+- PRODUCT_BUNDLE_IDENTIFIER: com.youmind.islandlink.widget
+- IslandLink: all
+- =FILE: 屿连/DataModel.swift=
+- // MARK: - SwiftData 模型
+- /// 人脉
+- // MARK: - 连接信号
+- /// 案件（极简：名称 + 案号 + 自由字段 + 人脉关联）
+- case person = “人脉”
+- /// 案件-人脉关联枢纽
+- =FILE: 屿连/Supporting/SubscriptionStubs.swift=
+- Text(“屿连 Pro”)
+- =FILE: 屿连/Supporting/EventSupport.swift=
+- .foregroundColor(event.eventType.swiftUIColor)
+- =FILE: 屿连/Supporting/Infrastructure.swift=
+- =FILE: 屿连/IslandLinkApp.swift=
+- /// - SwiftData 本地持久化 + CloudKit 多设备同步
+- /// - 3 Tab：人脉 / 事项（案件+事件）/ 设置
+- struct IslandLinkApp: App {
+- forSecurityApplicationGroupIdentifier: "group.com.youmind.islandlink"
+- storeURL = sharedDir.appendingPathComponent("IslandLink.sqlite")
+- NotificationCenter.default.post(name: .islandLinkDeepLinkNewEvent, object: nil)
+- NotificationCenter.default.post(name: .islandLinkDeepLinkNewPerson, object: nil)
+- NotificationCenter.default.post(name: .islandLinkDeepLinkNewCase, object: nil)
+- NotificationCenter.default.post(name: .islandLinkNavigateToPerson, object: nil, userInfo: ["personID": id])
+
+## Reconstructed Source Files
+
+- IslandLink-v4/project.yml
+- IslandLink-v4/屿连/AppIntents.swift
+- IslandLink-v4/屿连/CalendarReaderManager.swift
+- IslandLink-v4/屿连/CloudSyncObserver.swift
+- IslandLink-v4/屿连/ContactsImportManager.swift
+- IslandLink-v4/屿连/ContactsImportView.swift
+- IslandLink-v4/屿连/ContentView.swift
+- IslandLink-v4/屿连/DataModel.swift
+- IslandLink-v4/屿连/DesignSystem.swift
+- IslandLink-v4/屿连/EventDetailView.swift
+- IslandLink-v4/屿连/EventEditView.swift
+- IslandLink-v4/屿连/EventListView.swift
+- IslandLink-v4/屿连/HandoffManager.swift
+- IslandLink-v4/屿连/IslandLinkApp.swift
+- IslandLink-v4/屿连/IslandLinkWidget.swift
+- IslandLink-v4/屿连/PersonConnectionView.swift
+- IslandLink-v4/屿连/PersonListView.swift
+- IslandLink-v4/屿连/PersonNetworkView.swift
+- IslandLink-v4/屿连/SettingsView.swift
+- IslandLink-v4/屿连/SpotlightIndexManager.swift
+- IslandLink-v4/屿连/Supporting/EventSupport.swift
+- IslandLink-v4/屿连/Supporting/Infrastructure.swift
+- IslandLink-v4/屿连/Supporting/SubscriptionStubs.swift
+- IslandLink-v4/屿连/TodayWidget.swift
+- IslandLink-v4/屿连/project.yml

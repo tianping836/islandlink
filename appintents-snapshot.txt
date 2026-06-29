@@ -1,0 +1,179 @@
+- complementary:
+  - heading [level=2]
+  - link:
+    - /url: /boards
+- main:
+  - button:
+  - button "屿连app开发":
+    - generic: 屿连app开发
+  - button "任务":
+    - generic: 任务
+  - button "文件":
+    - generic: 文件
+  - button "分享":
+    - generic: 分享
+  - button:
+  - button "你的文件":
+    - generic: 你的文件
+  - button:
+  - button:
+  - list:
+    - button "屿连 IslandLink — 项目上下文（供 AI 编程助手使用）":
+      - generic: 屿连 IslandLink — 项目上下文（供 AI 编程助手使用）
+      - button:
+    - button "屿连/DataModel.swift":
+      - generic: 屿连/DataModel.swift
+      - button:
+    - button "屿连/Supporting/Infrastructure.swift":
+      - generic: 屿连/Supporting/Infrastructure.swift
+      - button:
+    - button "屿连/Supporting/EventSupport.swift":
+      - generic: 屿连/Supporting/EventSupport.swift
+      - button:
+    - button "屿连/Supporting/SubscriptionStubs.swift":
+      - generic: 屿连/Supporting/SubscriptionStubs.swift
+      - button:
+    - button "从 YouMind 下载 14 个 Swift 源文件 · 操作指南":
+      - generic: 从 YouMind 下载 14 个 Swift 源文件 · 操作指南
+      - button:
+    - button "推送到 GitHub — 操作清单":
+      - generic: 推送到 GitHub — 操作清单
+      - button:
+    - button ".gitignore — 屿连 IslandLink":
+      - generic: .gitignore — 屿连 IslandLink
+      - button:
+    - button "新建文档":
+      - generic: 新建文档
+      - button:
+    - button "屿连/IslandLinkApp.swift":
+      - generic: 屿连/IslandLinkApp.swift
+      - button:
+    - button "屿连/project.yml":
+      - generic: 屿连/project.yml
+      - button:
+    - button "屿连 IslandLink — iOS / macOS 真机安装测试指南":
+      - generic: 屿连 IslandLink — iOS / macOS 真机安装测试指南
+      - button:
+    - button "全项目源代码审计报告 v9":
+      - generic: 全项目源代码审计报告 v9
+      - button:
+    - button "飞书多维表格 → 岛连 IslandLink：契合功能与借鉴方案":
+      - generic: 飞书多维表格 → 岛连 IslandLink：契合功能与借鉴方案
+      - button:
+    - button "飞书多维表格字段系统研究 — 对岛连 IslandLink 的启示":
+      - generic: 飞书多维表格字段系统研究 — 对岛连 IslandLink 的启示
+      - button:
+    - button "屿连/TodayWidget.swift":
+      - generic: 屿连/TodayWidget.swift
+      - button:
+    - button "屿连/AppIntents.swift" [active]:
+      - generic: 屿连/AppIntents.swift
+      - button:
+    - button "屿连/HandoffManager.swift":
+      - generic: 屿连/HandoffManager.swift
+      - button:
+    - button "屿连/CloudSyncObserver.swift":
+      - generic: 屿连/CloudSyncObserver.swift
+      - button:
+    - button "屿连/SettingsView.swift":
+      - generic: 屿连/SettingsView.swift
+      - button:
+    - button "屿连/github_push.py":
+      - generic: 屿连/github_push.py
+      - button:
+    - button "屿连/ContactsImportView.swift":
+      - generic: 屿连/ContactsImportView.swift
+      - button:
+    - button "屿连/ContactsImportManager.swift":
+      - generic: 屿连/ContactsImportManager.swift
+      - button:
+    - button "屿连/CalendarReaderManager.swift":
+      - generic: 屿连/CalendarReaderManager.swift
+      - button:
+    - button "屿连/github_push (旧版).py":
+      - generic: 屿连/github_push (旧版).py
+      - button:
+    - button "下载 Python 推送脚本":
+      - generic: 下载 Python 推送脚本
+      - button:
+    - button "github_push.py — 屿连 IslandLink v3 → GitHub（一键自动版）":
+      - generic: github_push.py — 屿连 IslandLink v3 → GitHub（一键自动版）
+      - button:
+    - button "IslandLink v3 → GitHub 推送脚本":
+      - generic: IslandLink v3 → GitHub 推送脚本
+      - button:
+    - button "github_push.py — 屿连 IslandLink v3 全量源码 → GitHub":
+      - generic: github_push.py — 屿连 IslandLink v3 全量源码 → GitHub
+      - button:
+    - button "屿连/ContactsImportView (旧版).swift":
+      - generic: 屿连/ContactsImportView (旧版).swift
+      - button:
+    - button "屿连/ContactsImportManager (旧版).swift":
+      - generic: 屿连/ContactsImportManager (旧版).swift
+      - button:
+    - button "屿连/CalendarReaderManager (旧版).swift":
+      - generic: 屿连/CalendarReaderManager (旧版).swift
+      - button:
+    - button "屿连/sync.sh":
+      - generic: 屿连/sync.sh
+      - button:
+    - button "屿连 IslandLink":
+      - generic: 屿连 IslandLink
+      - button:
+    - button "屿连 IslandLink — 日历/通讯录集成 · 缺失分析与设计方案":
+      - generic: 屿连 IslandLink — 日历/通讯录集成 · 缺失分析与设计方案
+      - button:
+    - button "屿连 IslandLink v3 iOS原型":
+      - generic: 屿连 IslandLink v3 iOS原型
+      - button:
+    - button "屿连 IslandLink — 当前 App vs YouMind v3 设计差异分析":
+      - generic: 屿连 IslandLink — 当前 App vs YouMind v3 设计差异分析
+      - button:
+    - button "屿连 IslandLink Mac原型":
+      - generic: 屿连 IslandLink Mac原型
+      - button:
+    - button "屿连 IslandLink App 原型":
+      - generic: 屿连 IslandLink App 原型
+      - button:
+    - button "屿连/upload.py":
+      - generic: 屿连/upload.py
+      - button:
+    - button "Xcode 工程配置与编译验证 · 操作清单":
+      - generic: Xcode 工程配置与编译验证 · 操作清单
+      - button:
+    - button "专业，但不冷":
+      - generic: 专业，但不冷
+      - button:
+  - status
+  - button "user avatar 义军 周 Pro":
+    - img "user avatar"
+    - generic: 义军 周
+    - img "Pro"
+  - button:
+  - button:
+  - button:
+  - button "Run 文章插图"
+  - button "Run 审阅文章"
+  - button "Run 信息核查"
+  - button:
+  - button:
+  - button:
+  - button:
+  - generic: 添加封面
+  - generic: 生成标题
+  - generic: 屿连/AppIntents.swift
+  - button "Swift":
+    - generic: Swift
+  - button "复制":
+  - code:
+    - generic: "import AppIntents import SwiftData import Foundation // MARK: - ─── 岛连 App Intents ─── /// 供 Siri 和快捷指令 App 调用的核心意图。 /// 对标 Apple 自带 App（如通讯录、日历、备忘录）的 Shortcuts 集成体验。 /// /// 使用方式： /// - Siri：\"嘿 Siri，用岛连搜索联系人张三\" /// - 快捷指令：在快捷指令 App 中搜索「岛连」即可看到所有可用操作 // MARK: - 搜索人脉 Intent /// 在岛连中搜索联系人 /// Siri 触发词示例：「用岛连搜索联系人张三」「在岛连里找李律师」 struct SearchPeopleIntent: AppIntent { static var title: LocalizedStringResource = \"搜索人脉\" static var description = IntentDescription( \"在岛连中按姓名、单位或角色搜索联系人。支持 Siri 语音触发。\", categoryName: \"人脉\", searchKeywords: [\"搜索\", \"查找\", \"联系人\", \"人脉\", \"律师\", \"法官\", \"当事人\"] ) static var openAppWhenRun: Bool = false static var isDiscoverable: Bool = true @Parameter( title: \"搜索关键词\", description: \"联系人的姓名、单位或角色\", inputOptions: .init( keyboardType: .default, capitalizationType: .words ) ) var query: String @Dependency private var modelContainer: ModelContainer func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView { let context = ModelContext(modelContainer) let descriptor = FetchDescriptor<person>( predicate: #Predicate { person in person.name.localizedStandardContains(query) || (person.org?.localizedStandardContains(query) ?? false) || person.pinyin.localizedStandardContains(query) }, sortBy: [SortDescriptor(\\.name)] ) let results = try context.fetch(descriptor) if results.isEmpty { return .result(dialog: \"没有找到与「\\(query)」相关的联系人。\") } let names = results.prefix(5).map { $0.name } let count = results.count let nameList = names.joined(separator: \"、\") let dialog: IntentDialog = count == 1 ? \"找到 1 位联系人：\\(nameList)\" : \"找到 \\(count) 位联系人，包括 \\(nameList)\" return .result( dialog: dialog, view: SearchPeopleResultView(results: results) ) } } // MARK: - 今日安排 Intent /// 查看今日开庭、会议和截止日 /// Siri 触发词示例：「今天有什么安排」「今天开庭吗」 struct TodayScheduleIntent: AppIntent { static var title: LocalizedStringResource = \"今日安排\" static var description = IntentDescription( \"查看今日的开庭、会议和截止日安排。支持 Siri 语音触发和在快捷指令中自动化。\", categoryName: \"日历\", searchKeywords: [\"今天\", \"今日\", \"安排\", \"开庭\", \"会议\", \"截止\", \"日程\"] ) static var openAppWhenRun: Bool = false static var isDiscoverable: Bool = true @Dependency private var modelContainer: ModelContainer func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView { let context = ModelContext(modelContainer) let calendar = Calendar.current let todayStart = calendar.startOfDay(for: Date()) let todayEnd = calendar.date(byAdding: .day, value: 1, to: todayStart)! // 查询今日事件 let eventDescriptor = FetchDescriptor<event>( predicate: #Predicate { event in (event.statusRaw == \"planned\" || event.statusRaw == \"confirmed\") && event.date >= todayStart && event.date < todayEnd }, sortBy: [SortDescriptor(\\.date)] ) let todayEvents = try context.fetch(eventDescriptor) // 查询今日开庭（CaseEvent） let caseEventDescriptor = FetchDescriptor<caseevent>( predicate: #Predicate { caseEvent in caseEvent.eventTypeRaw == \"开庭\" && caseEvent.date >= todayStart && caseEvent.date < todayEnd }, sortBy: [SortDescriptor(\\.date)] ) let todayHearings = try context.fetch(caseEventDescriptor) let totalCount = todayEvents.count + todayHearings.count if totalCount == 0 { return .result( dialog: \"今天没有安排的开庭或事件。\", view: TodayEmptyView() ) } return .result( dialog: \"今天共有 \\(totalCount) 项安排。\", view: TodayScheduleResultView(events: todayEvents, hearings: todayHearings) ) } } // MARK: - 添加快捷事件 Intent /// 快速在岛连中创建事件 /// Siri 触发词示例：「在岛连里添加一个会议」「记录明天的开庭」 struct QuickAddEventIntent: AppIntent { static var title: LocalizedStringResource = \"添加事件\" static var description = IntentDescription( \"快速在岛连中添加一个新事件。支持 Siri 语音输入标题和类型。\", categoryName: \"日历\", searchKeywords: [\"添加\", \"新建\", \"创建\", \"事件\", \"会议\", \"开庭\", \"截止日\"] ) static var openAppWhenRun: Bool = true static var isDiscoverable: Bool = true @Parameter( title: \"事件标题\", description: \"事件的简短名称\", inputOptions: .init( keyboardType: .default, capitalizationType: .sentences ) ) var title: String @Parameter( title: \"事件类型\", description: \"事件的分类\", default: .meeting ) var eventType: EventTypeOption @Parameter( title: \"日期\", description: \"事件的日期（默认今天）\", default: Date() ) var date: Date func perform() async throws -> some IntentResult & ProvidesDialog { // openAppWhenRun = true，因此系统会打开 App 并传递参数 // App 层在 AppDelegate 中通过 userInfo 接收并打开新建事件页 return .result( dialog: \"正在添加「\\(title)」事件。\" ) } } // MARK: - 辅助类型 /// App Intents 用的事件类型枚举（桥接 EventType） enum EventTypeOption: String, AppEnum { case meeting = \"会议\" case deadline = \"截止日\" case hearing = \"开庭\" case filing = \"立案/递交\" case research = \"调研\" case travel = \"出差\" case social = \"社交\" case other = \"其他\" static var typeDisplayRepresentation = TypeDisplayRepresentation(name: \"事件类型\") static var caseDisplayRepresentations: [EventTypeOption: DisplayRepresentation] = [ .meeting: \"会议\", .deadline: \"截止日\", .hearing: \"开庭\", .filing: \"立案/递交\", .research: \"调研\", .travel: \"出差\", .social: \"社交\", .other: \"其他\" ] } // MARK: - Snippet Views（Siri / Spotlight 结果卡片） /// 搜索人脉结果卡片 struct SearchPeopleResultView: View { let results: [Person] var body: some View { VStack(alignment: .leading, spacing: 8) { ForEach(results.prefix(5), id: \\.id) { person in HStack(spacing: 12) { AvatarPlaceholder(roleType: person.roleTypes.first ?? .other, size: 36) VStack(alignment: .leading, spacing: 2) { Text(person.name) .font(.headline) Text(person.roleTypes.map(\\.rawValue).joined(separator: \"、\")) .font(.caption) .foregroundColor(.secondary) } } if person.id != results.prefix(5).last?.id { Divider() } } if results.count > 5 { Text(\"还有 \\(results.count - 5) 位更多结果...\") .font(.caption) .foregroundColor(.secondary) } } .padding() } } /// 今日安排结果卡片 struct TodayScheduleResultView: View { let events: [Event] let hearings: [CaseEvent] var body: some View { VStack(alignment: .leading, spacing: 12) { // 开庭 if !hearings.isEmpty { Label(\"开庭 (\\(hearings.count))\", systemImage: \"hammer.fill\") .font(.headline) ForEach(hearings, id: \\.id) { hearing in HStack { Text(hearing.case?.name ?? \"开庭\") .font(.body) Spacer() Text(hearing.date.formatted(.dateTime.hour().minute())) .font(.caption) .foregroundColor(.secondary) } } } // 事件 if !events.isEmpty { Label(\"事件 (\\(events.count))\", systemImage: \"calendar\") .font(.headline) ForEach(events, id: \\.id) { event in HStack { Image(systemName: event.eventType.systemImage) .font(.caption) Text(event.title) .font(.body) Spacer() if let date = event.date { Text(date.formatted(.dateTime.hour().minute())) .font(.caption) .foregroundColor(.secondary) } } } } } .padding() } } /// 今日无安排占位卡片 struct TodayEmptyView: View { var body: some View { VStack(spacing: 12) { Image(systemName: \"calendar\") .font(.largeTitle) .foregroundColor(.secondary) Text(\"今天没有安排\") .font(.headline) Text(\"享受清闲的一天 ☕️\") .font(.caption) .foregroundColor(.secondary) } .padding() } } // MARK: - App Shortcuts Provider /// 自动注册到快捷指令 App 的 Shortcuts 结构体 struct IslandLinkAppShortcuts: AppShortcutsProvider { static var appShortcuts: [AppShortcut] { AppShortcut( intent: SearchPeopleIntent(), phrases: [ \"在\\(.applicationName)中搜索联系人\", \"用\\(.applicationName)查找\\(\\.$query)\", \"\\(.applicationName)搜索人脉\", \"Search contacts in \\(.applicationName)\", \"Find \\(\\.$query) in \\(.applicationName)\" ], shortTitle: \"搜索人脉\", systemImageName: \"person.2.fill\" ) AppShortcut( intent: TodayScheduleIntent(), phrases: [ \"\\(.applicationName)今日安排\", \"查看\\(.applicationName)今天的日程\", \"今天\\(.applicationName)有什么\", \"\\(.applicationName) today schedule\", \"What's on \\(.applicationName) today\" ], shortTitle: \"今日安排\", systemImageName: \"calendar\" ) AppShortcut( intent: QuickAddEventIntent(), phrases: [ \"在\\(.applicationName)中添加事件\", \"用\\(.applicationName)记录\\(\\.$title)\", \"\\(.applicationName)添加\\(\\.$eventType)\", \"Add event in \\(.applicationName)\", \"Record \\(\\.$title) in \\(.applicationName)\" ], shortTitle: \"添加事件\", systemImageName: \"plus.circle.fill\" ) } static var shortcutTileColor: ShortcutTileColor = .teal } </caseevent></event></person>"
+  - button "Swift":
+    - generic: Swift
+  - button "复制":
+  - code:
+    - generic: "import AppIntents import SwiftData import Foundation // MARK: - ─── 岛连 App Intents ─── /// 供 Siri 和快捷指令 App 调用的核心意图。 /// 对标 Apple 自带 App（如通讯录、日历、备忘录）的 Shortcuts 集成体验。 /// /// 使用方式： /// - Siri：\"嘿 Siri，用岛连搜索联系人张三\" /// - 快捷指令：在快捷指令 App 中搜索「岛连」即可看到所有可用操作 // MARK: - 搜索人脉 Intent /// 在岛连中搜索联系人 /// Siri 触发词示例：「用岛连搜索联系人张三」「在岛连里找李律师」 struct SearchPeopleIntent: AppIntent { static var title: LocalizedStringResource = \"搜索人脉\" static var description = IntentDescription( \"在岛连中按姓名、单位或角色搜索联系人。支持 Siri 语音触发。\", categoryName: \"人脉\", searchKeywords: [\"搜索\", \"查找\", \"联系人\", \"人脉\", \"律师\", \"法官\", \"当事人\"] ) static var openAppWhenRun: Bool = false static var isDiscoverable: Bool = true @Parameter( title: \"搜索关键词\", description: \"联系人的姓名、单位或角色\", inputOptions: .init( keyboardType: .default, capitalizationType: .words ) ) var query: String @Dependency private var modelContainer: ModelContainer func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView { let context = ModelContext(modelContainer) let descriptor = FetchDescriptor<person>( predicate: #Predicate { person in person.name.localizedStandardContains(query) || person.pinyin.localizedStandardContains(query) }, sortBy: [SortDescriptor(\\.name)] ) let results = try context.fetch(descriptor) if results.isEmpty { return .result(dialog: \"没有找到与「\\(query)」相关的联系人。\") } let names = results.prefix(5).map { $0.name } let count = results.count let nameList = names.joined(separator: \"、\") let dialog: IntentDialog = count == 1 ? \"找到 1 位联系人：\\(nameList)\" : \"找到 \\(count) 位联系人，包括 \\(nameList)\" return .result( dialog: dialog, view: SearchPeopleResultView(results: results) ) } } // MARK: - 今日安排 Intent /// 查看今日开庭、会议和截止日 /// Siri 触发词示例：「今天有什么安排」「今天开庭吗」 struct TodayScheduleIntent: AppIntent { static var title: LocalizedStringResource = \"今日安排\" static var description = IntentDescription( \"查看今日的开庭、会议和截止日安排。支持 Siri 语音触发和在快捷指令中自动化。\", categoryName: \"日历\", searchKeywords: [\"今天\", \"今日\", \"安排\", \"开庭\", \"会议\", \"截止\", \"日程\"] ) static var openAppWhenRun: Bool = false static var isDiscoverable: Bool = true @Dependency private var modelContainer: ModelContainer func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView { let context = ModelContext(modelContainer) let calendar = Calendar.current let todayStart = calendar.startOfDay(for: Date()) let todayEnd = calendar.date(byAdding: .day, value: 1, to: todayStart)! // 查询今日事件 let eventDescriptor = FetchDescriptor<event>( predicate: #Predicate { event in (event.statusRaw == \"planned\" || event.statusRaw == \"confirmed\") && event.date >= todayStart && event.date < todayEnd }, sortBy: [SortDescriptor(\\.date)] ) let todayEvents = try context.fetch(eventDescriptor) let totalCount = todayEvents.count if totalCount == 0 { return .result( dialog: \"今天没有安排的事件。\", view: TodayEmptyView() ) } return .result( dialog: \"今天共有 \\(totalCount) 项安排。\", view: TodayScheduleResultView(events: todayEvents) ) } } // MARK: - 添加快捷事件 Intent /// 快速在岛连中创建事件 /// Siri 触发词示例：「在岛连里添加一个会议」「记录明天的开庭」 struct QuickAddEventIntent: AppIntent { static var title: LocalizedStringResource = \"添加事件\" static var description = IntentDescription( \"快速在岛连中添加一个新事件。支持 Siri 语音输入标题和类型。\", categoryName: \"日历\", searchKeywords: [\"添加\", \"新建\", \"创建\", \"事件\", \"会议\", \"开庭\", \"截止日\"] ) static var openAppWhenRun: Bool = true static var isDiscoverable: Bool = true @Parameter( title: \"事件标题\", description: \"事件的简短名称\", inputOptions: .init( keyboardType: .default, capitalizationType: .sentences ) ) var title: String @Parameter( title: \"事件类型\", description: \"事件的分类\", default: .meeting ) var eventType: EventTypeOption @Parameter( title: \"日期\", description: \"事件的日期（默认今天）\", default: Date() ) var date: Date func perform() async throws -> some IntentResult & ProvidesDialog { // openAppWhenRun = true，因此系统会打开 App 并传递参数 // App 层在 AppDelegate 中通过 userInfo 接收并打开新建事件页 return .result( dialog: \"正在添加「\\(title)」事件。\" ) } } // MARK: - 辅助类型 /// App Intents 用的事件类型枚举（桥接 EventType） enum EventTypeOption: String, AppEnum { case meeting = \"会议\" case deadline = \"截止日\" case hearing = \"开庭\" case filing = \"立案/递交\" case research = \"调研\" case travel = \"出差\" case social = \"社交\" case other = \"其他\" static var typeDisplayRepresentation = TypeDisplayRepresentation(name: \"事件类型\") static var caseDisplayRepresentations: [EventTypeOption: DisplayRepresentation] = [ .meeting: \"会议\", .deadline: \"截止日\", .hearing: \"开庭\", .filing: \"立案/递交\", .research: \"调研\", .travel: \"出差\", .social: \"社交\", .other: \"其他\" ] } // MARK: - Snippet Views（Siri / Spotlight 结果卡片） /// 搜索人脉结果卡片 struct SearchPeopleResultView: View { let results: [Person] var body: some View { VStack(alignment: .leading, spacing: 8) { ForEach(results.prefix(5), id: \\.id) { person in HStack(spacing: 12) { AvatarPlaceholder(roleType: person.roleTypes.first ?? .other, size: 36) VStack(alignment: .leading, spacing: 2) { Text(person.name) .font(.headline) Text(person.roleTypes.map(\\.rawValue).joined(separator: \"、\")) .font(.caption) .foregroundColor(.secondary) } } if person.id != results.prefix(5).last?.id { Divider() } } if results.count > 5 { Text(\"还有 \\(results.count - 5) 位更多结果...\") .font(.caption) .foregroundColor(.secondary) } } .padding() } } /// 今日安排结果卡片 struct TodayScheduleResultView: View { let events: [Event] var body: some View { VStack(alignment: .leading, spacing: 12) { if !events.isEmpty { Label(\"事件 (\\(events.count))\", systemImage: \"calendar\") .font(.headline) ForEach(events, id: \\.id) { event in HStack { Image(systemName: event.eventType.systemImage) .font(.caption) Text(event.title) .font(.body) Spacer() if let date = event.date { Text(date.formatted(.dateTime.hour().minute())) .font(.caption) .foregroundColor(.secondary) } } } } } .padding() } } /// 今日无安排占位卡片 struct TodayEmptyView: View { var body: some View { VStack(spacing: 12) { Image(systemName: \"calendar\") .font(.largeTitle) .foregroundColor(.secondary) Text(\"今天没有安排\") .font(.headline) Text(\"享受清闲的一天 ☕️\") .font(.caption) .foregroundColor(.secondary) } .padding() } } // MARK: - App Shortcuts Provider /// 自动注册到快捷指令 App 的 Shortcuts 结构体 struct IslandLinkAppShortcuts: AppShortcutsProvider { static var appShortcuts: [AppShortcut] { AppShortcut( intent: SearchPeopleIntent(), phrases: [ \"在\\(.applicationName)中搜索联系人\", \"用\\(.applicationName)查找\\(\\.$query)\", \"\\(.applicationName)搜索人脉\", \"Search contacts in \\(.applicationName)\", \"Find \\(\\.$query) in \\(.applicationName)\" ], shortTitle: \"搜索人脉\", systemImageName: \"person.2.fill\" ) AppShortcut( intent: TodayScheduleIntent(), phrases: [ \"\\(.applicationName)今日安排\", \"查看\\(.applicationName)今天的日程\", \"今天\\(.applicationName)有什么\", \"\\(.applicationName) today schedule\", \"What's on \\(.applicationName) today\" ], shortTitle: \"今日安排\", systemImageName: \"calendar\" ) AppShortcut( intent: QuickAddEventIntent(), phrases: [ \"在\\(.applicationName)中添加事件\", \"用\\(.applicationName)记录\\(\\.$title)\", \"\\(.applicationName)添加\\(\\.$eventType)\", \"Add event in \\(.applicationName)\", \"Record \\(\\.$title) in \\(.applicationName)\" ], shortTitle: \"添加事件\", systemImageName: \"plus.circle.fill\" ) } static var shortcutTileColor: ShortcutTileColor = .teal } </event></person>"
+  - paragraph
+  - generic: 1 共 2
+  - generic: 全部拒绝
+  - generic: 全部接受
+- region "Notifications alt+T"

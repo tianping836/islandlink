@@ -1,0 +1,111 @@
+{
+  "extractedAt": "2026-06-29T03:15:41.543Z",
+  "fileCount": 21,
+  "files": [
+    {
+      "path": "路径",
+      "bytes": 14,
+      "lines": 1
+    },
+    {
+      "path": "project.yml",
+      "bytes": 3888,
+      "lines": 1268
+    },
+    {
+      "path": "屿连/DataModel.swift",
+      "bytes": 16006,
+      "lines": 1429
+    },
+    {
+      "path": "屿连/Supporting/SubscriptionStubs.swift",
+      "bytes": 2945,
+      "lines": 330
+    },
+    {
+      "path": "屿连/Supporting/EventSupport.swift",
+      "bytes": 923,
+      "lines": 95
+    },
+    {
+      "path": "屿连/Supporting/Infrastructure.swift",
+      "bytes": 673,
+      "lines": 51
+    },
+    {
+      "path": "屿连/IslandLinkApp.swift",
+      "bytes": 6987,
+      "lines": 563
+    },
+    {
+      "path": "屿连/EventListView.swift",
+      "bytes": 6078,
+      "lines": 626
+    },
+    {
+      "path": "屿连/EventDetailView.swift",
+      "bytes": 3974,
+      "lines": 398
+    },
+    {
+      "path": "屿连/EventEditView.swift",
+      "bytes": 4233,
+      "lines": 425
+    },
+    {
+      "path": "屿连/ContactsImportManager.swift",
+      "bytes": 2659,
+      "lines": 217
+    },
+    {
+      "path": "屿连/CalendarReaderManager.swift",
+      "bytes": 1309,
+      "lines": 100
+    },
+    {
+      "path": "屿连/HandoffManager.swift",
+      "bytes": 2367,
+      "lines": 186
+    },
+    {
+      "path": "屿连/TodayWidget.swift",
+      "bytes": 2579,
+      "lines": 237
+    },
+    {
+      "path": "屿连/DesignSystem.swift",
+      "bytes": 30009,
+      "lines": 2973
+    },
+    {
+      "path": "屿连/PersonListView.swift",
+      "bytes": 19510,
+      "lines": 952
+    },
+    {
+      "path": "屿连/PersonNetworkView.swift",
+      "bytes": 22146,
+      "lines": 1065
+    },
+    {
+      "path": "屿连/PersonConnectionView.swift",
+      "bytes": 19664,
+      "lines": 561
+    },
+    {
+      "path": "屿连/SettingsView.swift",
+      "bytes": 40519,
+      "lines": 1115
+    },
+    {
+      "path": "屿连/ContentView.swift",
+      "bytes": 10571,
+      "lines": 664
+    },
+    {
+      "path": "屿连/ContactsImportView.swift",
+      "bytes": 9117,
+      "lines": 426
+    }
+  ]
+}
