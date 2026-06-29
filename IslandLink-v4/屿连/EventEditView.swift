@@ -1,2 +1,262 @@
 import SwiftUI
-import SwiftData /// 新建/编辑事件表单 /// 支持标题、类型、日期、地点、描述、备注、参与人、关联案件 struct EventEditView: View { @Environment(\.modelContext) private var modelContext @Environment(\.dismiss) private var dismiss @EnvironmentObject private var subManager: SubscriptionManager // 新建时为 nil，编辑时传入已有事件 var existingEvent: Event? = nil /// 智能默认：从指定案件上下文创建时，自动关联该案件 var defaultCase: Case? = nil // MARK: 表单字段 @State private var title = "" @State private var eventType: EventType = .other @State private var status: EventStatus = .planned @State private var date: Date = Date() @State private var hasDate: Bool = true @State private var isAllDay: Bool = true @State private var hasEndDate: Bool = false @State private var endDate: Date = Date() @State private var location = "" @State private var summary = "" @State private var notes = "" // 参与人选择 @State private var selectedPersons: [Person] = [] @State private var showPersonPicker = false // 关联案件选择 @State private var selectedCases: [Case] = [] @State private var showCasePicker = false // iPad 拖拽接收：拖入联系人加入参与人列表 @State private var isDropTargeted = false @Query(sort: \Person.name) private var allPersons: [Person] @Query(sort: \Case.name) private var allCases: [Case] @AppStorage("caseModuleEnabled") private var caseModuleEnabled: Bool = true private var isEditing: Bool { existingEvent != nil } var body: some View { NavigationStack { Form { // MARK: 基本信息 Section("基本信息") { TextField("事件标题", text: $title) .textContentType(.none) // 事件类型 Picker("类型", selection: $eventType) { ForEach(EventType.allCases) { type in Label(type.rawValue, systemImage: type.systemImage) .tag(type) } } if isEditing { Picker("状态", selection: $status) { ForEach(EventStatus.allCases) { s in Text(s.rawValue).tag(s) } } } } // MARK: 日期时间 Section("日期时间") { Toggle("设置日期", isOn: $hasDate) if hasDate { QuickDatePicker( date: $date, hasDate: $hasDate, isAllDay: isAllDay ) Toggle("全天事件", isOn: $isAllDay) Toggle("结束日期", isOn: $hasEndDate) if hasEndDate { DatePicker("结束日期", selection: $endDate, displayedComponents: [.date]) } } } // MARK: 地点与描述 Section("地点与描述") { TextField("地点（选填）", text: $location) .textContentType(.fullStreetAddress) TextField("聊了什么（选填）", text: $summary, axis: .vertical) .lineLimit(2...5) .textContentType(.none) } // MARK: 参与人 Section { if selectedPersons.isEmpty { Button { showPersonPicker = true } label: { Label("添加参与人", systemImage: "person.badge.plus") } .foregroundColor(.tealLink) } else { ForEach(selectedPersons, id: \.id) { person in HStack { if let primaryRole = person.roleTypes.first { AvatarPlaceholder(roleType: primaryRole, size: 32) } VStack(alignment: .leading) { Text(person.name) .font(.cnHeadline) if let firstOrg = person.orgUnits.first { Text(firstOrg.name) .font(.cnCaption1) .foregroundColor(.textSecondary) } } Spacer() } } .onDelete { indices in selectedPersons.remove(atOffsets: indices) } Button { showPersonPicker = true } label: { Label("添加更多参与人", systemImage: "plus") } .foregroundColor(.tealLink) } } header: { Text("参与人") } // MARK: 关联案件 if caseModuleEnabled { Section { if selectedCases.isEmpty { Button { showCasePicker = true } label: { Label("关联案件（选填）", systemImage: "link") } .foregroundColor(.tealLink) } else { ForEach(selectedCases, id: \.id) { c in HStack { Image(systemName: "folder.fill") .foregroundColor(.textSecondary) VStack(alignment: .leading) { Text(c.name) .font(.cnHeadline) if let caseNumber = c.caseNumber { Text(caseNumber) .font(.cnCaption1) .foregroundColor(.textSecondary) } } Spacer() } } .onDelete { indices in selectedCases.remove(atOffsets: indices) } Button { showCasePicker = true } label: { Label("关联更多案件", systemImage: "plus") } .foregroundColor(.tealLink) } } header: { Text("关联案件") } } // MARK: 备注 Section("备注") { TextField("私有备注（选填）", text: $notes, axis: .vertical) .lineLimit(2...5) .textContentType(.none) } } .scrollContentBackground(.hidden) .background(Color.surfaceLight) .navigationTitle(isEditing ? "编辑事件" : "新建事件") .navigationBarTitleDisplayMode(.inline) .toolbar { ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } } ToolbarItem(placement: .confirmationAction) { Button("保存") { saveEvent() } .fontWeight(.semibold) .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty) } } .sheet(isPresented: $showPersonPicker) { personPickerSheet } .sheet(isPresented: $showCasePicker) { casePickerSheet } .onAppear { loadExistingEvent() applySmartDefaults() } .onChange(of: selectedCases) { _, newCases in // 智能默认：关联了案件但类型未改 → 自动设为「开庭」 if !isEditing && !newCases.isEmpty && eventType == .other { eventType = .hearing } } // iPad 拖拽接收：从人脉列表拖入联系人到事件编辑页 .dropDestination(for: String.self) { items, _ in handleDroppedPersonIDs(items) return true } isTargeted: { targeted in isDropTargeted = targeted } } } // MARK: - iPad 拖拽处理 /// 处理从人脉列表拖入的联系人 ID，加入参与人列表 private func handleDroppedPersonIDs(_ ids: [String]) { let allPersonIDs = Set(ids) let existingIDs = Set(selectedPersons.map { $0.id }) let newPersons = allPersons.filter { allPersonIDs.contains($0.id) && !existingIDs.contains($0.id) } selectedPersons.append(contentsOf: newPersons) } // MARK: - 加载已有数据 private func loadExistingEvent() { guard let event = existingEvent else { return } title = event.title eventType = event.eventType status = event.status if let d = event.date { date = d hasDate = true } else { hasDate = false } isAllDay = event.isAllDay if let ed = event.endDate { endDate = ed hasEndDate = true } location = event.location ?? "" summary = event.summary ?? "" notes = event.notes ?? "" selectedPersons = event.participants selectedCases = event.linkedCases } // MARK: - 智能默认值 /// 根据上下文自动预填最优选项 private func applySmartDefaults() { guard !isEditing else { return } // 从案件上下文创建 → 自动关联案件 + 默认开庭 if let dc = defaultCase { if !selectedCases.contains(where: { $0.id == dc.id }) { selectedCases = [dc] } eventType = .hearing } } // MARK: - 保存 private func saveEvent() { let trimmedTitle = title.trimmingCharacters(in: .whitespaces) guard !trimmedTitle.isEmpty else { return } // 限额检查（仅新建事件需要检查） if !isEditing && !subManager.canAddCaseOrEvent { subManager.showUpgradeSheet = true return } let savedEvent: Event if let event = existingEvent { // 更新已有事件 event.title = trimmedTitle event.eventType = eventType event.status = status event.date = hasDate ? date : nil event.endDate = hasEndDate ? endDate : nil event.isAllDay = isAllDay event.location = location.trimmingCharacters(in: .whitespaces).isEmpty ? nil : location event.summary = summary.trimmingCharacters(in: .whitespaces).isEmpty ? nil : summary event.notes = notes.trimmingCharacters(in: .whitespaces).isEmpty ? nil : notes event.updatedAt = Date() updateEventPersons(for: event) updateEventCases(for: event) savedEvent = event } else { // 创建新事件 let event = Event( title: trimmedTitle, eventType: eventType, status: .planned, date: hasDate ? date : nil, endDate: hasEndDate ? endDate : nil, isAllDay: isAllDay, location: location.trimmingCharacters(in: .whitespaces).isEmpty ? nil : location, summary: summary.trimmingCharacters(in: .whitespaces).isEmpty ? nil : summary, notes: notes.trimmingCharacters(in: .whitespaces).isEmpty ? nil : notes ) modelContext.insert(event) updateEventPersons(for: event) updateEventCases(for: event) savedEvent = event } try? modelContext.save() } private func updateEventPersons(for event: Event) { // 移除旧的关联 event.eventPersons.forEach { modelContext.delete($0) } // 创建新的关联 for (index, person) in selectedPersons.enumerated() { let ep = EventPerson(person: person, event: event, role: "参与者") ep.sortOrder = index modelContext.insert(ep) } } private func updateEventCases(for event: Event) { // 移除旧的关联 event.eventCases.forEach { modelContext.delete($0) } // 创建新的关联 for c in selectedCases { let ec = EventCase(event: event, case: c) modelContext.insert(ec) } } // MARK: - 选择器 Sheets private var personPickerSheet: some View { NavigationStack { List { ForEach(allPersons, id: \.id) { person in Button { if !selectedPersons.contains(where: { $0.id == person.id }) { selectedPersons.append(person) } } label: { HStack { if let primaryRole = person.roleTypes.first { AvatarPlaceholder(roleType: primaryRole, size: 36) } VStack(alignment: .leading, spacing: 2) { Text(person.name) .font(.cnHeadline) .foregroundColor(.textPrimary) if let firstOrg = person.orgUnits.first { Text(firstOrg.name) .font(.cnCaption1) .foregroundColor(.textSecondary) } } Spacer() if selectedPersons.contains(where: { $0.id == person.id }) { Image(systemName: "checkmark.circle.fill") .foregroundColor(.tealLink) } } } .buttonStyle(.plain) } } .listStyle(.plain) .navigationTitle("选择参与人") .navigationBarTitleDisplayMode(.inline) .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showPersonPicker = false } } } } } private var casePickerSheet: some View { NavigationStack { List { ForEach(allCases.filter { !$0.isArchived }, id: \.id) { c in Button { if !selectedCases.contains(where: { $0.id == c.id }) { selectedCases.append(c) } } label: { HStack { VStack(alignment: .leading, spacing: 2) { Text(c.name) .font(.cnHeadline) .foregroundColor(.textPrimary) if let caseNumber = c.caseNumber { Text(caseNumber) .font(.cnCaption1) .foregroundColor(.textSecondary) } } Spacer() if selectedCases.contains(where: { $0.id == c.id }) { Image(systemName: "checkmark.circle.fill") .foregroundColor(.tealLink) } } } .buttonStyle(.plain) } } .listStyle(.plain) .navigationTitle("选择关联案件") .navigationBarTitleDisplayMode(.inline) .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showCasePicker = false } } } } } }
+import SwiftData
+
+struct EventEditView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var subManager: SubscriptionManager
+
+    var existingEvent: Event?
+    var defaultCase: Case?
+
+    @State private var title = ""
+    @State private var eventType: EventType = .other
+    @State private var status: EventStatus = .planned
+    @State private var date = Date()
+    @State private var hasDate = true
+    @State private var isAllDay = true
+    @State private var location = ""
+    @State private var summary = ""
+    @State private var selectedPersons: [Person] = []
+    @State private var selectedCases: [Case] = []
+    @State private var showPersonPicker = false
+    @State private var showCasePicker = false
+
+    @Query(sort: \Person.name) private var allPersons: [Person]
+    @Query(sort: \Case.name) private var allCases: [Case]
+    @AppStorage("caseModuleEnabled") private var caseModuleEnabled = true
+
+    private var isEditing: Bool { existingEvent != nil }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("共同经历") {
+                    TextField("标题", text: $title)
+
+                    Picker("类型", selection: $eventType) {
+                        ForEach(EventType.allCases) { type in
+                            Label(type.rawValue, systemImage: type.systemImage).tag(type)
+                        }
+                    }
+
+                    Picker("状态", selection: $status) {
+                        ForEach(EventStatus.allCases) { status in
+                            Text(status.rawValue).tag(status)
+                        }
+                    }
+                }
+
+                Section("时间地点") {
+                    Toggle("记录日期", isOn: $hasDate)
+                    if hasDate {
+                        DatePicker(
+                            "日期",
+                            selection: $date,
+                            displayedComponents: isAllDay ? [.date] : [.date, .hourAndMinute]
+                        )
+                        Toggle("全天", isOn: $isAllDay)
+                    }
+
+                    TextField("地点（选填）", text: $location)
+                }
+
+                Section("参与人") {
+                    ForEach(selectedPersons, id: \.id) { person in
+                        Label(person.name, systemImage: person.roleTypes.first?.systemImage ?? "person.fill")
+                    }
+                    .onDelete { selectedPersons.remove(atOffsets: $0) }
+
+                    Button {
+                        showPersonPicker = true
+                    } label: {
+                        Label("添加参与人", systemImage: "person.badge.plus")
+                    }
+                }
+
+                if caseModuleEnabled {
+                    Section("关联事项") {
+                        ForEach(selectedCases, id: \.id) { caseItem in
+                            Label(caseItem.name, systemImage: "folder.fill")
+                        }
+                        .onDelete { selectedCases.remove(atOffsets: $0) }
+
+                        Button {
+                            showCasePicker = true
+                        } label: {
+                            Label("关联事项", systemImage: "link")
+                        }
+                    }
+                }
+
+                Section("记录") {
+                    TextField("这次共同经历说明了什么？", text: $summary, axis: .vertical)
+                        .lineLimit(3...6)
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color.surfaceLight)
+            .navigationTitle(isEditing ? "编辑事件" : "新建事件")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("取消") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("保存") { saveEvent() }
+                        .fontWeight(.semibold)
+                        .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+            }
+            .sheet(isPresented: $showPersonPicker) {
+                personPickerSheet
+            }
+            .sheet(isPresented: $showCasePicker) {
+                casePickerSheet
+            }
+            .onAppear {
+                loadInitialValues()
+            }
+        }
+    }
+
+    private var personPickerSheet: some View {
+        NavigationStack {
+            List(allPersons, id: \.id) { person in
+                Button {
+                    if !selectedPersons.contains(where: { $0.id == person.id }) {
+                        selectedPersons.append(person)
+                    }
+                } label: {
+                    HStack {
+                        AvatarPlaceholder(roleType: person.roleTypes.first ?? .other, size: 32)
+                        Text(person.name)
+                            .foregroundColor(.textPrimary)
+                        Spacer()
+                        if selectedPersons.contains(where: { $0.id == person.id }) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.tealLink)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("选择参与人")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("完成") { showPersonPicker = false }
+                }
+            }
+        }
+    }
+
+    private var casePickerSheet: some View {
+        NavigationStack {
+            List(allCases.filter { !$0.isArchived }, id: \.id) { caseItem in
+                Button {
+                    if !selectedCases.contains(where: { $0.id == caseItem.id }) {
+                        selectedCases.append(caseItem)
+                    }
+                } label: {
+                    HStack {
+                        Text(caseItem.name)
+                            .foregroundColor(.textPrimary)
+                        Spacer()
+                        if selectedCases.contains(where: { $0.id == caseItem.id }) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.tealLink)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("选择事项")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("完成") { showCasePicker = false }
+                }
+            }
+        }
+    }
+
+    private func loadInitialValues() {
+        guard title.isEmpty else { return }
+
+        if let event = existingEvent {
+            title = event.title
+            eventType = event.eventType
+            status = event.status
+            hasDate = event.date != nil
+            date = event.date ?? Date()
+            isAllDay = event.isAllDay
+            location = event.location ?? ""
+            summary = event.summary ?? ""
+            selectedPersons = event.participants
+            selectedCases = event.associatedCases
+            return
+        }
+
+        if let defaultCase {
+            selectedCases = [defaultCase]
+            eventType = .hearing
+        }
+    }
+
+    private func saveEvent() {
+        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedTitle.isEmpty else { return }
+
+        if !isEditing && !subManager.canAddCaseOrEvent {
+            subManager.showUpgradeSheet = true
+            return
+        }
+
+        let event = existingEvent ?? Event(title: trimmedTitle)
+        event.title = trimmedTitle
+        event.eventType = eventType
+        event.status = status
+        event.date = hasDate ? date : nil
+        event.isAllDay = isAllDay
+        event.location = location.trimmingCharacters(in: .whitespacesAndNewlines).nilIfEmpty
+        event.summary = summary.trimmingCharacters(in: .whitespacesAndNewlines).nilIfEmpty
+        event.updatedAt = Date()
+
+        if existingEvent == nil {
+            modelContext.insert(event)
+        }
+
+        replaceParticipants(for: event)
+        replaceCases(for: event)
+
+        try? modelContext.save()
+        dismiss()
+    }
+
+    private func replaceParticipants(for event: Event) {
+        event.eventPersons.forEach { modelContext.delete($0) }
+        event.eventPersons.removeAll()
+
+        for (index, person) in selectedPersons.enumerated() {
+            let link = EventPerson(person: person, event: event, role: "参与者", sortOrder: index)
+            modelContext.insert(link)
+            event.eventPersons.append(link)
+        }
+    }
+
+    private func replaceCases(for event: Event) {
+        event.eventCases.forEach { modelContext.delete($0) }
+        event.eventCases.removeAll()
+
+        for (index, caseItem) in selectedCases.enumerated() {
+            let link = EventCase(event: event, case: caseItem, sortOrder: index)
+            modelContext.insert(link)
+            event.eventCases.append(link)
+        }
+    }
+}
+
+private extension String {
+    var nilIfEmpty: String? {
+        isEmpty ? nil : self
+    }
+}

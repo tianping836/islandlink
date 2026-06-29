@@ -54,8 +54,6 @@ var body: some View { EmptyView() }
 
 }
 
-func syncAware(_ block: @escaping () -> T) -> T { block() }
-
 func refreshSync() {}
 
 func eventShareText(for event: Event) -> String {

@@ -26,7 +26,11 @@ func searchPersons(query: String) -> [Person] {
 
 guard !query.isEmpty else { return [] }
 
-let descriptor = FetchDescriptor(predicate: #Predicate { $0.name.localizedStandardContains(query) })
+let descriptor = FetchDescriptor<Person>(
+    predicate: #Predicate<Person> { person in
+        person.name.localizedStandardContains(query)
+    }
+)
 
 return (try? modelContext.fetch(descriptor)) ?? []
 

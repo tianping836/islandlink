@@ -40,7 +40,7 @@ struct IslandLinkApp: App {
 
 @AppStorage("lockTimeout") private var lockTimeout: Int = 60
 
-@Environment(.scenePhase) private var scenePhase
+@Environment(\.scenePhase) private var scenePhase
 
 // MARK: ModelContainer
 
@@ -103,8 +103,6 @@ EventPerson.self,
 
 EventCase.self,
 
-RedeemCode.self,
-
 configurations: config
 
 )
@@ -132,20 +130,6 @@ ContentView()
 .environmentObject(appLockManager)
 
 .preferredColorScheme(colorScheme)
-
-.onAppear {
-
-Task.detached {
-
-await SpotlightIndexManager.shared.rebuildAllIndices(
-
-modelContext: modelContainer.mainContext
-
-)
-
-}
-
-}
 
 .onContinueUserActivity(CSSearchableItemActionType) { userActivity in
 

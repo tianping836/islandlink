@@ -36,7 +36,7 @@ enum ProSource { case purchased, invitation }
 
 struct UpgradeSheet: View {
 
-@Environment(.dismiss) private var dismiss
+@Environment(\.dismiss) private var dismiss
 
 var body: some View {
 
@@ -88,7 +88,7 @@ Image(systemName: "xmark.circle.fill")
 
 struct RedeemSheet: View {
 
-@Environment(.dismiss) private var dismiss
+@Environment(\.dismiss) private var dismiss
 
 @State private var code = ""
 
@@ -148,7 +148,7 @@ Image(systemName: "xmark.circle.fill")
 
 struct CodeGeneratorSheet: View {
 
-@Environment(.dismiss) private var dismiss
+@Environment(\.dismiss) private var dismiss
 
 var body: some View {
 

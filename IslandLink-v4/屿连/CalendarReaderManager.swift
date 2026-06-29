@@ -14,7 +14,7 @@ private let eventStore = EKEventStore()
 
 @Published var isAuthorized: Bool = false
 
-@Published var selectedCalendars: Set = []
+@Published var selectedCalendars: Set<String> = []
 
 @Published var availableCalendars: [EKCalendar] = []
 
